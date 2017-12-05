@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import tn.iit.dao.MatDAO;
 import tn.iit.entity.Mat;
+import tn.iit.entity.Pointage;
 
 @Controller
 @RequestMapping("api/mat")
@@ -49,4 +50,10 @@ public class MatController {
 
 	}
 
+	@GetMapping("/{id}")
+	@ResponseBody
+	public Mat showdetail(@PathVariable Integer id) {
+		return matdao.findOne(id);
+	}
+	
 }

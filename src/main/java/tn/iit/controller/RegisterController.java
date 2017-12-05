@@ -38,8 +38,14 @@ public class RegisterController {
 		Registerdao.saveAndFlush(register);
 		return register + result;
 	}
+	
+	@GetMapping("/{email:.*}")
+	@ResponseBody
+	public Register showdetail(@PathVariable String email) {
+		return Registerdao.findOne(email);
+	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{email:.*}")
 	public String delete(@PathVariable String email) {
 		Register p = Registerdao.findOne(email);
 		Registerdao.delete(email);

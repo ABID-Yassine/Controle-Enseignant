@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import tn.iit.dao.EnseignantDAO;
 import tn.iit.entity.Enseignant;
+import tn.iit.entity.Register;
 
 @Controller
 @RequestMapping("api/enseignant")
@@ -38,6 +39,12 @@ public class EnseignantController {
 		}
 		enseignantdao.saveAndFlush(enseignant);
 		return enseignant + result;
+	}
+	
+	@GetMapping("/{id}")
+	@ResponseBody
+	public Enseignant showdetail(@PathVariable Integer id) {
+		return enseignantdao.findOne(id);
 	}
 
 	@DeleteMapping("/{id}")

@@ -7,22 +7,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
+
 @Entity
-@Table(name = "ensig")
-public class Enseignant implements Serializable {
+@Table(name = "enseignement")
+public class Enseignement implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "COD_enseig")
+	@Column(name = "idBase")
 	private Integer id;
+  
+	@ManyToOne
+	@JoinColumn(name="COD_enseig")
+	private Enseignant ensig;
+	
 
-	@Column(name = "nom_ensi")
-	private String nom;
-
-	public Enseignant() {
+	public Enseignement() {
 	}
 
 	public Integer getId() {
@@ -33,17 +39,14 @@ public class Enseignant implements Serializable {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+ 
+
+	public Enseignant getEnsig() {
+		return ensig;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	@Override
-	public String toString() {
-		return "Enseignant [id=" + id + ", nom=" + nom + "]";
+	public void setEnsig(Enseignant ensig) {
+		this.ensig = ensig;
 	}
 
 	@Override
@@ -62,7 +65,7 @@ public class Enseignant implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Enseignant other = (Enseignant) obj;
+		Enseignement other = (Enseignement) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -71,6 +74,7 @@ public class Enseignant implements Serializable {
 		return true;
 	}
 
+ 
 	
 	
 	

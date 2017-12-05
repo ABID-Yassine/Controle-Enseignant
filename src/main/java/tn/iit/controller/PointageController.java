@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import tn.iit.dao.PointageDAO;
 import tn.iit.entity.Pointage;
+import tn.iit.entity.Salle;
 
 @Controller
 @RequestMapping("api/pointage")
@@ -45,6 +46,12 @@ public class PointageController {
 		Pointage p = pointagedao.findOne(id);
 		pointagedao.delete(id);
 		return p + "supprime";
+	}
+	
+	@GetMapping("/{id}")
+	@ResponseBody
+	public Pointage showdetail(@PathVariable Integer id) {
+		return pointagedao.findOne(id);
 	}
 
 }
