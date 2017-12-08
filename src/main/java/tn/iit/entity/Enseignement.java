@@ -1,7 +1,6 @@
 package tn.iit.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,26 +8,32 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "enseignant")
-public class Enseignant implements Serializable {
+@Table(name = "Enseignement")
+public class Enseignement implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "COD_enseig")
+	@Column(name = "idBase")
 	private Integer id;
 
 	@Column(name = "nom_ensi")
 	private String nom;
-	
- 	@OneToMany(fetch = FetchType.EAGER,  mappedBy="enseignant")
-	private List<Enseignement> enseignement;
 
-	public Enseignant() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "COD_enseig")
+	private Enseignant enseignant;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "COD_matiere")
+	private Matiere matiere;
+
+	public Enseignement() {
 	}
 
 	public Integer getId() {
@@ -47,12 +52,20 @@ public class Enseignant implements Serializable {
 		this.nom = nom;
 	}
 
-	public List<Enseignement> getEnseignement() {
-		return enseignement;
+	public Enseignant getEnseignant() {
+		return enseignant;
 	}
 
-	public void setEnseignement(List<Enseignement> enseignement) {
-		this.enseignement = enseignement;
+	public void setEnseignant(Enseignant enseignant) {
+		this.enseignant = enseignant;
+	}
+
+	public Matiere getMatiere() {
+		return matiere;
+	}
+
+	public void setMatiere(Matiere matiere) {
+		this.matiere = matiere;
 	}
 
 	@Override
@@ -71,7 +84,7 @@ public class Enseignant implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Enseignant other = (Enseignant) obj;
+		Enseignement other = (Enseignement) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -79,6 +92,5 @@ public class Enseignant implements Serializable {
 			return false;
 		return true;
 	}
- 
-	
+
 }

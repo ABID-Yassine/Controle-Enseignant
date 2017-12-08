@@ -3,7 +3,6 @@ package tn.iit.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,20 +10,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import tn.iit.dao.RegisterDAO;
 import tn.iit.entity.Register;
 
-@Controller
+@RestController
 @RequestMapping("api/register")
 public class RegisterController {
 
 	@Autowired
-	private RegisterDAO Registerdao;
+	private RegisterDAO registerdao;
 
 	@GetMapping
 	@ResponseBody
 	public List<Register> list() {
-		return Registerdao.findAll();
+		return registerdao.findAll();
 	}
 
 	@PostMapping
@@ -35,14 +36,19 @@ public class RegisterController {
 		} else {
 			result = " modifie";
 		}
-		Registerdao.saveAndFlush(register);
+		registerdao.saveAndFlush(register);
 		return register + result;
 	}
-
-	@DeleteMapping("/{id}")
+	
+	@GetMapping("/{email:.*}")
+	public Register showdetail(@PathVariable String email) {
+		return registerdao.findOne(email);
+	}
+	 
+	@DeleteMapping("/{email:.*}")
 	public String delete(@PathVariable String email) {
-		Register p = Registerdao.findOne(email);
-		Registerdao.delete(email);
+		Register p = registerdao.findOne(email);
+		registerdao.delete(email);
 		return p + "supprime";
 	}
 

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import tn.iit.dao.PointageDAO;
 import tn.iit.entity.Pointage;
@@ -23,7 +22,6 @@ public class PointageController {
 	private PointageDAO pointagedao;
 
 	@GetMapping
-	@ResponseBody
 	public List<Pointage> list() {
 		return pointagedao.findAll();
 	}
@@ -45,6 +43,11 @@ public class PointageController {
 		Pointage p = pointagedao.findOne(id);
 		pointagedao.delete(id);
 		return p + "supprime";
+	}
+	
+	@GetMapping("/{id}")
+	public Pointage showdetail(@PathVariable Integer id) {
+		return pointagedao.findOne(id);
 	}
 
 }
