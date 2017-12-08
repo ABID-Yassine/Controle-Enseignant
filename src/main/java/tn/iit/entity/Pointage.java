@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +23,10 @@ public class Pointage implements Serializable {
 
 	@Column(name = "Date")
 	private String Date;
+	
+	@ManyToOne
+	@JoinColumn(name="idBase")
+	private Enseignement idBase;
 
 	public Integer getId() {
 		return id;

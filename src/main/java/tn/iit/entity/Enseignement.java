@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,10 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
-
 @Entity
-@Table(name = "enseignement")
+@Table(name = "Enseignement")
 public class Enseignement implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,11 +21,17 @@ public class Enseignement implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idBase")
 	private Integer id;
-  
-	@ManyToOne
-	@JoinColumn(name="COD_enseig")
-	private Enseignant ensig;
-	
+
+	@Column(name = "nom_ensi")
+	private String nom;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "COD_enseig")
+	private Enseignant enseignant;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "COD_matiere")
+	private Matiere matiere;
 
 	public Enseignement() {
 	}
@@ -39,14 +44,28 @@ public class Enseignement implements Serializable {
 		this.id = id;
 	}
 
- 
-
-	public Enseignant getEnsig() {
-		return ensig;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setEnsig(Enseignant ensig) {
-		this.ensig = ensig;
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public Enseignant getEnseignant() {
+		return enseignant;
+	}
+
+	public void setEnseignant(Enseignant enseignant) {
+		this.enseignant = enseignant;
+	}
+
+	public Matiere getMatiere() {
+		return matiere;
+	}
+
+	public void setMatiere(Matiere matiere) {
+		this.matiere = matiere;
 	}
 
 	@Override
@@ -74,8 +93,4 @@ public class Enseignement implements Serializable {
 		return true;
 	}
 
- 
-	
-	
-	
 }

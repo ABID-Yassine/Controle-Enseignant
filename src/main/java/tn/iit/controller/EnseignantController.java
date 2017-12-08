@@ -3,20 +3,18 @@ package tn.iit.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import tn.iit.dao.EnseignantDAO;
 import tn.iit.entity.Enseignant;
-import tn.iit.entity.Register;
 
-@Controller
+@RestController
 @RequestMapping("api/enseignant")
 public class EnseignantController {
 
@@ -24,7 +22,6 @@ public class EnseignantController {
 	private EnseignantDAO enseignantdao;
 
 	@GetMapping
-	@ResponseBody
 	public List<Enseignant> list() {
 		return enseignantdao.findAll();
 	}
@@ -42,7 +39,6 @@ public class EnseignantController {
 	}
 	
 	@GetMapping("/{id}")
-	@ResponseBody
 	public Enseignant showdetail(@PathVariable Integer id) {
 		return enseignantdao.findOne(id);
 	}

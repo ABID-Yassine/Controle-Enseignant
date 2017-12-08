@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "mat")
-public class Mat implements Serializable {
+public class Matiere implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -27,7 +27,7 @@ public class Mat implements Serializable {
 	@Column(name = "nom_salle")
 	private String nom_salle; 
 
-	public Mat() {
+	public Matiere() {
 	}
 
 	public Integer getId() {
@@ -83,7 +83,7 @@ public class Mat implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Mat other = (Mat) obj;
+		Matiere other = (Matiere) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
