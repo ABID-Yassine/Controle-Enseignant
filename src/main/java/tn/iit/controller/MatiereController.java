@@ -11,46 +11,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.iit.dao.SalleDAO;
-import tn.iit.entity.Salle;
- 
+import tn.iit.dao.MatiereDAO;
+import tn.iit.entity.Matiere;
+
 @RestController
-@RequestMapping("api/salle")
-public class SalleController {
+@RequestMapping("api/matiere")
+public class MatiereController {
 
 	@Autowired
-	private SalleDAO salledao;
+	private MatiereDAO matdao;
 
-	@GetMapping 
-	public List<Salle> list() {
-		return salledao.findAll();
+	@GetMapping
+	public List<Matiere> list() {
+		return matdao.findAll();
 
 	}
 
-	@PostMapping 
-	public String add(@RequestBody Salle salle) {
+	@PostMapping
+	public String add(@RequestBody Matiere mat) {
 		String result;
-		if (salle.getId() == null) {
+		if (mat.getId() == null) {
 			result = " insere";
 		} else {
 			result = " modifie";
 		}
-		salledao.saveAndFlush(salle);
-		return salle + result;
+		matdao.saveAndFlush(mat);
+		return mat + result;
 	}
 
 	@DeleteMapping("/{id}")
 	public String delete(@PathVariable Integer id) {
-		Salle s = salledao.findOne(id);
-		salledao.delete(id);
-		return s + "supprime";
+		Matiere m = matdao.findOne(id);
+		matdao.delete(id);
+		return m + "supprime";
 
 	}
-	
-	
-	@GetMapping("/{id}") 
-	public Salle showdetail(@PathVariable Integer id) {
-		return salledao.findOne(id);
-	}
 
+	@GetMapping("/{id}")
+	public Matiere showdetail(@PathVariable Integer id) {
+		return matdao.findOne(id);
+	}
+	
 }

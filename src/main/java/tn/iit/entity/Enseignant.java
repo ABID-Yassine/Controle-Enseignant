@@ -13,22 +13,22 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "salles")
-public class Salle implements Serializable {
+@Table(name = "enseignant")
+public class Enseignant implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cod_salle")
+	@Column(name = "COD_enseig")
 	private Integer id;
 
-	@Column(name = "nom_salle")
+	@Column(name = "nom_ensi")
 	private String nom;
-
-	@OneToMany(fetch = FetchType.EAGER,  mappedBy="enseignant")
-	private List<Enseignement> enseignement;
 	
-	public Salle() {
+ 	@OneToMany(fetch = FetchType.EAGER,  mappedBy="enseignant")
+	private List<Enseignement> enseignement;
+
+	public Enseignant() {
 	}
 
 	public Integer getId() {
@@ -47,9 +47,12 @@ public class Salle implements Serializable {
 		this.nom = nom;
 	}
 
-	@Override
-	public String toString() {
-		return "Salle [id=" + id + ", nom=" + nom + "]";
+	public List<Enseignement> getEnseignement() {
+		return enseignement;
+	}
+
+	public void setEnseignement(List<Enseignement> enseignement) {
+		this.enseignement = enseignement;
 	}
 
 	@Override
@@ -68,7 +71,7 @@ public class Salle implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Salle other = (Salle) obj;
+		Enseignant other = (Enseignant) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -76,6 +79,6 @@ public class Salle implements Serializable {
 			return false;
 		return true;
 	}
-
+ 
 	
 }

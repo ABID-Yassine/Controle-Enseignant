@@ -1,35 +1,34 @@
 package tn.iit.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "salles")
-public class Salle implements Serializable {
+@Table(name = "pointage")
+public class Pointage implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cod_salle")
+	@Column(name = "idPointage")
 	private Integer id;
 
-	@Column(name = "nom_salle")
-	private String nom;
-
-	@OneToMany(fetch = FetchType.EAGER,  mappedBy="enseignant")
-	private List<Enseignement> enseignement;
+	@Column(name = "Date")
+	private String Date;
 	
-	public Salle() {
-	}
+	@ManyToOne
+	@JoinColumn(name="idBase")
+	private Enseignement idBase;
+	
+	
 
 	public Integer getId() {
 		return id;
@@ -39,17 +38,15 @@ public class Salle implements Serializable {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getDate() {
+		return Date;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setDate(String date) {
+		Date = date;
 	}
 
-	@Override
-	public String toString() {
-		return "Salle [id=" + id + ", nom=" + nom + "]";
+	public Pointage() {
 	}
 
 	@Override
@@ -68,7 +65,7 @@ public class Salle implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Salle other = (Salle) obj;
+		Pointage other = (Pointage) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -76,6 +73,7 @@ public class Salle implements Serializable {
 			return false;
 		return true;
 	}
-
 	
+	
+
 }

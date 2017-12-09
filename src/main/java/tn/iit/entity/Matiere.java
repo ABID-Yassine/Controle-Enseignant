@@ -13,22 +13,28 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "salles")
-public class Salle implements Serializable {
+@Table(name = "mat")
+public class Matiere implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cod_salle")
+	@Column(name = "COD_matiere")
 	private Integer id;
 
+	@Column(name = "abv")
+	private String abv;
+	
+	@Column(name = "Nom_matiere")
+	private String Nom_matiere;
+
 	@Column(name = "nom_salle")
-	private String nom;
+	private String nom_salle; 
 
 	@OneToMany(fetch = FetchType.EAGER,  mappedBy="enseignant")
 	private List<Enseignement> enseignement;
 	
-	public Salle() {
+	public Matiere() {
 	}
 
 	public Integer getId() {
@@ -39,17 +45,33 @@ public class Salle implements Serializable {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getAbv() {
+		return abv;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setAbv(String abv) {
+		this.abv = abv;
+	}
+
+	public String getNom_matiere() {
+		return Nom_matiere;
+	}
+
+	public void setNom_matiere(String nom_matiere) {
+		Nom_matiere = nom_matiere;
+	}
+
+	public String getNom_salle() {
+		return nom_salle;
+	}
+
+	public void setNom_salle(String nom_salle) {
+		this.nom_salle = nom_salle;
 	}
 
 	@Override
 	public String toString() {
-		return "Salle [id=" + id + ", nom=" + nom + "]";
+		return "Mat [id=" + id + ", abv=" + abv + ", Nom_matiere=" + Nom_matiere + ", nom_salle=" + nom_salle + "]";
 	}
 
 	@Override
@@ -68,7 +90,7 @@ public class Salle implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Salle other = (Salle) obj;
+		Matiere other = (Matiere) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -76,6 +98,9 @@ public class Salle implements Serializable {
 			return false;
 		return true;
 	}
-
+ 
 	
+	
+	 
+
 }
