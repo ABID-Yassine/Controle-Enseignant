@@ -1,15 +1,12 @@
 package tn.iit.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,9 +21,7 @@ public class Enseignant implements Serializable {
 
 	@Column(name = "nom_ensi")
 	private String nom;
-	
- 	@OneToMany(fetch = FetchType.EAGER,  mappedBy="enseignant")
-	private List<Enseignement> enseignement;
+	 
 
 	public Enseignant() {
 	}
@@ -47,13 +42,7 @@ public class Enseignant implements Serializable {
 		this.nom = nom;
 	}
 
-	public List<Enseignement> getEnseignement() {
-		return enseignement;
-	}
-
-	public void setEnseignement(List<Enseignement> enseignement) {
-		this.enseignement = enseignement;
-	}
+ 
 
 	@Override
 	public int hashCode() {
