@@ -31,9 +31,6 @@ public class Dep implements Serializable {
 	@Column(name = "nom_dep")
 	private String nom;
 	
-	@OneToMany(fetch = FetchType.EAGER,  mappedBy="enseignant")
-	private List<Enseignement> enseignement;
-
 	public Dep() {
 	}
 

@@ -1,7 +1,6 @@
 package tn.iit.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,46 +24,34 @@ public class Enseignement implements Serializable {
 
 	@Column(name = "nom_ensi")
 	private String nom;
-	
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "COD_matiere")
-	private Matiere matiere;
-	
-	
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "COD_enseig")
 	private Enseignant enseignant;
 
+	@ManyToOne
+	@JoinColumn(name = "COD_matiere")
+	private Matiere matiere;
 
-	@OneToMany(fetch = FetchType.EAGER,  mappedBy="idBase")
-	private List<Pointage> poinatges;
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "cod_jour")
 	private Jours jours;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cod_dep")
+
+	@ManyToOne
+	@JoinColumn
 	private Dep dep;
 
-	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "cod_seance")
 	private Seances seances;
 
-	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "cod_niveaux")
 	private Niveaux niveaux;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "cod_salle")
 	private Salle salle;
-
-	
-
 
 	public Enseignement() {
 	}
@@ -100,6 +86,47 @@ public class Enseignement implements Serializable {
 
 	public void setMatiere(Matiere matiere) {
 		this.matiere = matiere;
+	}
+	
+
+	public Jours getJours() {
+		return jours;
+	}
+
+	public void setJours(Jours jours) {
+		this.jours = jours;
+	}
+
+	public Dep getDep() {
+		return dep;
+	}
+
+	public void setDep(Dep dep) {
+		this.dep = dep;
+	}
+
+	public Seances getSeances() {
+		return seances;
+	}
+
+	public void setSeances(Seances seances) {
+		this.seances = seances;
+	}
+
+	public Niveaux getNiveaux() {
+		return niveaux;
+	}
+
+	public void setNiveaux(Niveaux niveaux) {
+		this.niveaux = niveaux;
+	}
+
+	public Salle getSalle() {
+		return salle;
+	}
+
+	public void setSalle(Salle salle) {
+		this.salle = salle;
 	}
 
 	@Override

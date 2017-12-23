@@ -25,8 +25,6 @@ public class Enseignant implements Serializable {
 	@Column(name = "nom_ensi")
 	private String nom;
 	
- 	@OneToMany(fetch = FetchType.EAGER,  mappedBy="enseignant")
-	private List<Enseignement> enseignement;
 
 	public Enseignant() {
 	}
@@ -47,13 +45,7 @@ public class Enseignant implements Serializable {
 		this.nom = nom;
 	}
 
-	public List<Enseignement> getEnseignement() {
-		return enseignement;
-	}
-
-	public void setEnseignement(List<Enseignement> enseignement) {
-		this.enseignement = enseignement;
-	}
+	
 
 	@Override
 	public int hashCode() {

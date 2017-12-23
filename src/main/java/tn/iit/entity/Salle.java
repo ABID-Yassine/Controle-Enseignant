@@ -25,8 +25,6 @@ public class Salle implements Serializable {
 	@Column(name = "nom_salle")
 	private String nom;
 
-	@OneToMany(fetch = FetchType.EAGER,  mappedBy="enseignant")
-	private List<Enseignement> enseignement;
 	
 	public Salle() {
 	}

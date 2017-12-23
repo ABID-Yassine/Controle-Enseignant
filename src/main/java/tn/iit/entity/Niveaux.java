@@ -32,9 +32,7 @@ public class Niveaux implements Serializable{
 	@Column(name = "nom_niveaux")
 	private String nom;
 	
-	@OneToMany(fetch = FetchType.EAGER,  mappedBy="enseignant")
-	private List<Enseignement> enseignement;
-
+	
 	public Niveaux() {
 	}
 

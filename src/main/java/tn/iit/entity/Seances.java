@@ -27,8 +27,7 @@ public class Seances implements Serializable {
 	@Column(name = "nom_seance")
 	private String nom;
 	
-	@OneToMany(fetch = FetchType.EAGER,  mappedBy="seance")
-	private List<Enseignement> enseignement;
+	
 	
 	@Override
 	public String toString() {

@@ -31,8 +31,6 @@ public class Matiere implements Serializable {
 	@Column(name = "nom_salle")
 	private String nom_salle; 
 
-	@OneToMany(fetch = FetchType.EAGER,  mappedBy="enseignant")
-	private List<Enseignement> enseignement;
 	
 	public Matiere() {
 	}

@@ -31,8 +31,7 @@ public class Jours implements Serializable{
 	@Column(name = "nom_jour")
 	private String nom;
 
-	@OneToMany(fetch = FetchType.EAGER,  mappedBy="enseignant")
-	private List<Enseignement> enseignement;
+	
 	
 	public Jours() {
 	}
