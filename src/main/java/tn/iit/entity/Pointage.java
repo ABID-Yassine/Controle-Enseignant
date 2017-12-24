@@ -27,8 +27,6 @@ public class Pointage implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idBase")
 	private Enseignement idBase;
-	
-	
 
 	public Integer getId() {
 		return id;

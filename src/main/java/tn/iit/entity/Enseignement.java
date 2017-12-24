@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,6 +35,7 @@ public class Enseignement implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "cod_jour")
 	private Jours jours;
+	
 
 	@ManyToOne
 	@JoinColumn
@@ -72,21 +72,6 @@ public class Enseignement implements Serializable {
 		this.nom = nom;
 	}
 
-	public Enseignant getEnseignant() {
-		return enseignant;
-	}
-
-	public void setEnseignant(Enseignant enseignant) {
-		this.enseignant = enseignant;
-	}
-
-	public Matiere getMatiere() {
-		return matiere;
-	}
-
-	public void setMatiere(Matiere matiere) {
-		this.matiere = matiere;
-	}
 	
 
 	public Jours getJours() {
@@ -128,6 +113,23 @@ public class Enseignement implements Serializable {
 	public void setSalle(Salle salle) {
 		this.salle = salle;
 	}
+	
+	public Enseignant getEnseignant() {
+		return enseignant;
+	}
+
+	public void setEnseignant(Enseignant enseignant) {
+		this.enseignant = enseignant;
+	}
+
+	public Matiere getMatiere() {
+		return matiere;
+	}
+
+	public void setMatiere(Matiere matiere) {
+		this.matiere = matiere;
+	}
+
 
 	@Override
 	public int hashCode() {
