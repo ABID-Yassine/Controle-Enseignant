@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import tn.iit.entity.Pointage;
 
 @Controller
 @RequestMapping("api/pointage")
+@CrossOrigin(origins = "*", maxAge=0)
 public class PointageController {
 
 	@Autowired
