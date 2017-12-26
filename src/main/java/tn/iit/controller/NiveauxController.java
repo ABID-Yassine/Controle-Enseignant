@@ -17,7 +17,7 @@ import tn.iit.dao.NiveauxDAO;
 import tn.iit.entity.Niveaux;
 
 @Controller
-@RequestMapping("api/pointage")
+@RequestMapping("api/niveaux")
 @CrossOrigin(origins = "*", maxAge=0)
 public class NiveauxController {
 
