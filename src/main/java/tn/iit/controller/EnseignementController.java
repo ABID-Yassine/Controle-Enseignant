@@ -73,8 +73,8 @@ public class EnseignementController {
 
 		Enseignement ens = showdetail(id);
 		String subject = "Avis de seance non effectu�e";
-		String userName = "yasso.abid";
-		String password = "23817072";
+		String userName = "rh.iit.sfax";
+		String password = "rhiitsfax";
 		String host = "smtp.gmail.com";
 		String port = "587";
 
@@ -86,6 +86,7 @@ public class EnseignementController {
 
 		try {
 			EmailUtility.sendEmail(host, port, userName, password, mailEns, subject, message);
+			ens.setMailsend(true);
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}

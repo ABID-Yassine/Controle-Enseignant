@@ -23,6 +23,9 @@ public class Enseignement implements Serializable {
 
 	@Column(name = "nom_ensi")
 	private String nom;
+	
+	@Column(name = "mailsend")
+	private boolean mailsend;
 
 	@ManyToOne
 	@JoinColumn(name = "COD_enseig")
@@ -52,6 +55,16 @@ public class Enseignement implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "cod_salle")
 	private Salle salle;
+
+	
+	
+	public boolean getMailsend() {
+		return mailsend;
+	}
+
+	public void setMailsend(boolean mailsend) {
+		this.mailsend = mailsend;
+	}
 
 	public Enseignement() {
 	}
