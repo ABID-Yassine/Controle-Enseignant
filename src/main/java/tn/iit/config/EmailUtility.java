@@ -50,7 +50,7 @@ public class EmailUtility {
 		msg.setSubject(subject);
 		msg.setSentDate(new Date());
 		msg.setText(message);
-
+		properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 		// sends the e-mail
 		Transport.send(msg);
 

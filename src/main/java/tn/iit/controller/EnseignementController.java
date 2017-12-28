@@ -72,7 +72,7 @@ public class EnseignementController {
 	public void sendMail(@PathVariable Integer id) {
 
 		Enseignement ens = showdetail(id);
-		String subject = "Avis de seance non effectu�e";
+		String subject = "Avis de seance non effectuée";
 		String userName = "rh.iit.sfax";
 		String password = "rhiitsfax";
 		String host = "smtp.gmail.com";
@@ -84,7 +84,7 @@ public class EnseignementController {
 		String message = "Bonjour Mr " + nomEns + " , la seance de " + ens.getSeances().getNom() + " le " + ens.getJours().getDate()
 				+ " avec le groupe " + nomGroupe + " a été raté , veuillez planifier une seance de rattrappage ";
 
-		try {
+		try { 
 			EmailUtility.sendEmail(host, port, userName, password, mailEns, subject, message);
 			ens.setMailsend(true);
 		} catch (MessagingException e) {
