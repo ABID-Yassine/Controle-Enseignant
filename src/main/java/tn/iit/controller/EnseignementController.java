@@ -87,7 +87,8 @@ public class EnseignementController {
 		try { 
 			EmailUtility.sendEmail(host, port, userName, password, mailEns, subject, message);
 			ens.setMailsend(true);
-		} catch (MessagingException e) {
+			enseignementdao.saveAndFlush(ens);
+			} catch (MessagingException e) {
 			e.printStackTrace();
 		}
 	}
