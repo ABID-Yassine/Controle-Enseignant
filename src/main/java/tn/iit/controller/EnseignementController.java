@@ -73,8 +73,8 @@ public class EnseignementController {
 
 		Enseignement ens = showdetail(id);
 		String subject = "Avis de seance non effectu�e";
-		String userName = "yasso.abid";
-		String password = "23817072";
+		String userName = "rh.iit.sfax@gmail.com";
+		String password = "rhiitsfax";
 		String host = "smtp.gmail.com";
 		String port = "587";
 
