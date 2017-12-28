@@ -15,9 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.iit.config.EmailUtility;
+import tn.iit.dao.DepDAO;
 import tn.iit.dao.EnseignantDAO;
 import tn.iit.dao.EnseignementDAO;
+import tn.iit.dao.JoursDAO;
 import tn.iit.dao.MatiereDAO;
+import tn.iit.dao.NiveauxDAO;
+import tn.iit.dao.SalleDAO;
+import tn.iit.dao.SeanceDAO;
 import tn.iit.dto.EnseignementDTO;
 import tn.iit.entity.Enseignement;
 
@@ -32,7 +37,17 @@ public class EnseignementController {
 	private EnseignantDAO enseignantdao;
 	@Autowired
 	private MatiereDAO matieredao;
-
+	@Autowired
+	private SalleDAO salledao;
+	@Autowired
+	private SeanceDAO seancedao;
+	@Autowired
+	private JoursDAO joursdao;
+	@Autowired
+	private DepDAO depdao;
+	@Autowired
+	private NiveauxDAO niveauxdao;
+	
 	@GetMapping
 	public List<Enseignement> list() {
 		return enseignementdao.findAll();
@@ -47,8 +62,13 @@ public class EnseignementController {
 			result = " modifie";
 		}
 		Enseignement ens = new Enseignement();
-		ens.setMatiere(matieredao.findOne(enseignementDTO.getMatiere()));;
+		ens.setMatiere(matieredao.findOne(enseignementDTO.getMatiere()));
 		ens.setEnseignant(enseignantdao.findOne(enseignementDTO.getEnseignant()));
+		ens.setSalle(salledao.findOne(enseignementDTO.getSalle()));
+		ens.setSeances(seancedao.findOne(enseignementDTO.getSeance()));
+		ens.setJours(joursdao.findOne(enseignementDTO.getJours()));
+		ens.setDep(depdao.findOne(enseignementDTO.getDepartement()));
+		ens.setNiveaux(niveauxdao.findOne(enseignementDTO.getNiveaux()));
 		ens.setNom(enseignementDTO.getNom());
 		ens.setId(enseignementDTO.getId());
 		enseignementdao.saveAndFlush(ens);
@@ -72,8 +92,8 @@ public class EnseignementController {
 	public void sendMail(@PathVariable Integer id) {
 
 		Enseignement ens = showdetail(id);
-		String subject = "Avis de seance non effectu�e";
-		String userName = "rh.iit.sfax@gmail.com";
+		String subject = "Avis de seance non effectuée";
+		String userName = "rh.iit.sfax";
 		String password = "rhiitsfax";
 		String host = "smtp.gmail.com";
 		String port = "587";
@@ -84,9 +104,11 @@ public class EnseignementController {
 		String message = "Bonjour Mr " + nomEns + " , la seance de " + ens.getSeances().getNom() + " le " + ens.getJours().getDate()
 				+ " avec le groupe " + nomGroupe + " a été raté , veuillez planifier une seance de rattrappage ";
 
-		try {
+		try { 
 			EmailUtility.sendEmail(host, port, userName, password, mailEns, subject, message);
-		} catch (MessagingException e) {
+			ens.setMailsend(true);
+			enseignementdao.saveAndFlush(ens);
+			} catch (MessagingException e) {
 			e.printStackTrace();
 		}
 	}
