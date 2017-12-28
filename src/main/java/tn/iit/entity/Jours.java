@@ -27,9 +27,20 @@ public class Jours implements Serializable{
 
 	@Column(name = "nom_jour")
 	private String nom;
+	
+	@Column(name = "date")
+	private String date;
 
 	
 	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public Jours() {
 	}
 

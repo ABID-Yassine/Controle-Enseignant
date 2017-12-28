@@ -22,9 +22,29 @@ public class Enseignant implements Serializable {
 	@Column(name = "nom_ensi")
 	private String nom;
 	 
+	@Column(name = "mail")
+	private String email;
+	
 
 	public Enseignant() {
 	}
+	
+	
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
 
 	public Integer getId() {
 		return id;

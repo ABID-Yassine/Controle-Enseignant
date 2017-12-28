@@ -2,6 +2,8 @@ package tn.iit.controller;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.iit.config.EmailUtility;
 import tn.iit.dao.EnseignantDAO;
 import tn.iit.dao.EnseignementDAO;
 import tn.iit.dao.MatiereDAO;
@@ -63,4 +66,30 @@ public class EnseignementController {
 	public Enseignement showdetail(@PathVariable Integer id) {
 		return enseignementdao.findOne(id);
 	}
+	
+	
+	@GetMapping("/mail/{id}")
+	public void sendMail(@PathVariable Integer id) {
+
+		Enseignement ens = showdetail(id);
+		String subject = "Avis de seance non effectu�e";
+		String userName = "yasso.abid";
+		String password = "23817072";
+		String host = "smtp.gmail.com";
+		String port = "587";
+
+		String mailEns = ens.getEnseignant().getEmail();
+		String nomEns = ens.getEnseignant().getNom();
+		String nomGroupe = ens.getNiveaux().getNom();
+		String message = "Bonjour Mr " + nomEns + " , la seance de " + ens.getSeances().getNom() + " le " + ens.getJours().getDate()
+				+ " avec le groupe " + nomGroupe + " a été raté , veuillez planifier une seance de rattrappage ";
+
+		try {
+			EmailUtility.sendEmail(host, port, userName, password, mailEns, subject, message);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }
