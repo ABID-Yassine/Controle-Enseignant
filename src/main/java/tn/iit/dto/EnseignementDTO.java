@@ -1,9 +1,12 @@
 package tn.iit.dto;
 
+import java.util.Date;
+
 public class EnseignementDTO {
 
 	private Integer id;
 	private String nom;
+	private Date date;
 	private Integer enseignant;
 	private Integer matiere;
 	private Integer salle;
@@ -73,6 +76,17 @@ public class EnseignementDTO {
 		this.niveaux = niveaux;
 	}
 
+
+	public Date getDate() {
+		return date;
+	}
+
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	
 	 
 
 }

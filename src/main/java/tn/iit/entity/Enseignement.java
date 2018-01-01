@@ -1,6 +1,7 @@
 package tn.iit.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Enseignement")
@@ -23,6 +26,10 @@ public class Enseignement implements Serializable {
 
 	@Column(name = "nom_ensi")
 	private String nom;
+	
+	@Column(name = "date")
+	@Temporal(TemporalType.DATE)
+	private Date date;
 	
 	@Column(name = "mailsend")
 	private boolean mailsend;
@@ -67,6 +74,15 @@ public class Enseignement implements Serializable {
 	}
 
 	public Enseignement() {
+	}
+
+	
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public Integer getId() {

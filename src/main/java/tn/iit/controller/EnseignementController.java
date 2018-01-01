@@ -1,5 +1,6 @@
 package tn.iit.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -85,6 +86,12 @@ public class EnseignementController {
 	@GetMapping("/{id}")
 	public Enseignement showdetail(@PathVariable Integer id) {
 		return enseignementdao.findOne(id);
+	}
+	
+	@GetMapping("/datetoday")
+	public List<Enseignement> showdetail() {
+		Date d = new Date(); 
+		return enseignementdao.findByDate(d);
 	}
 	
 	
