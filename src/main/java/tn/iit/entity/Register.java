@@ -25,6 +25,10 @@ public class Register implements Serializable {
 	@Column(name = "datedenaissance")
 	private String datedenaissance;
 
+	@Column(name = "admin")
+	private Integer admin;
+	
+	
 	public String getEmail() {
 		return email;
 	}
@@ -57,6 +61,15 @@ public class Register implements Serializable {
 		this.datedenaissance = datedenaissance;
 	}
 	
+	
+	public Integer getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Integer admin) {
+		this.admin = admin;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
