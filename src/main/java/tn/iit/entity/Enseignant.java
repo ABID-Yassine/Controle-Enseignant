@@ -21,30 +21,31 @@ public class Enseignant implements Serializable {
 
 	@Column(name = "nom_ensi")
 	private String nom;
-	 
+
 	@Column(name = "mail")
 	private String email;
-	
+
+	@Column(name = "numero")
+	private String numero;
 
 	public Enseignant() {
 	}
-	
-	
-	
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 
 	public String getEmail() {
 		return email;
 	}
 
-
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
-
 
 	public Integer getId() {
 		return id;
@@ -61,8 +62,6 @@ public class Enseignant implements Serializable {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
- 
 
 	@Override
 	public int hashCode() {
@@ -88,6 +87,5 @@ public class Enseignant implements Serializable {
 			return false;
 		return true;
 	}
- 
-	
+
 }
