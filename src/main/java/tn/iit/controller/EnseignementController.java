@@ -64,6 +64,7 @@ public class EnseignementController {
 		}
 		Enseignement ens = new Enseignement();
 		ens.setMatiere(matieredao.findOne(enseignementDTO.getMatiere()));
+		ens.setDate(enseignementDTO.getDate());
 		ens.setEnseignant(enseignantdao.findOne(enseignementDTO.getEnseignant()));
 		ens.setSalle(salledao.findOne(enseignementDTO.getSalle()));
 		ens.setSeances(seancedao.findOne(enseignementDTO.getSeance()));
